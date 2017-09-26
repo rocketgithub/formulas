@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="fersuc_generar_linea" model="ir.ui.view">
+            <field name="name">fersuc_generar_linea.form</field>
+            <field name="model">fersuc.generar.linea.pedido</field>
+            <field name="arch" type="xml">
+                <form string="Generar Linea">
+                    <group>
+                        <group>
+                            <field name="componente" on_change="onchange_componente(componente)"/>
+                        </group>
+                        <group>
+                            <field name="explosion" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="pricelist_id" />
+                        </group>           
+                    </group>
+                    <notebook>
+                        <page string="Atributos">
+                            <field name="atributo">
+                                <tree string="Atributos" editable="bottom">
+                                    <field name="atributo" />
+                                    <field name="valor" />
+                                    <field name="opcion" widget="selection" domain="[('atributo_id','=',atributo)]" />
+                                </tree>
+                            </field>
+                            <group colspan="4" col="6">
+                                <button icon="terp-camera_test" string="Calcular" name="calcular" type="object"/>
+                                <button icon="terp-camera_test" string="Agregar" name="agregar" type="object"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_fersuc_generar_linea" model="ir.actions.act_window">
+            <field name="name">Generar Linea</field>
+            <field name="res_model">fersuc.generar.linea.pedido</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="fersuc_view_order_form" model="ir.ui.view">
+            <field name="name">fersuc_sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="invoice_cancel" position="after">
+                       <button name="%(action_fersuc_generar_linea)d" string="Generar Linea" type="action" states="draft"/>
+                        <button string="Copiar" name="copiar" type="object"/>
+                    </button>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                        <field name="explosion" />
+                        <field name="pricelist_id" />
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/form//field[@name='address_allotment_id']" position="after">
+                        <field name="explosion" />
+                        <field name="pricelist_id" />
+                        <field name="condiciones_venta" />
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree"  position="attributes">
+                        <attribute name="editable"/>
+                    </xpath>
+                </data>
+                <field name="company_id" position="after">
+                    <field name="limite_credito"/>
+                    <field name="cheque_rechazado"/>
+                    <field name="cuenta_vencida"/>
+                    <field name="recibo_caja"/>
+                    <field name="dias_entrega"/>
+                    <field name="pedidos_anteriores"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

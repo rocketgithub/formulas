@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="formulas_atributo_tree" model="ir.ui.view">
+            <field name="name">formulas_atributo.tree</field>
+            <field name="model">formulas.atributo</field>
+            <field name="arch" type="xml">
+                <tree string="Atributos">
+                    <field name='sequence' widget='handle'/>
+                    <field name="name"/>
+                    <field name="tipo"/>
+                    <field name="categoria_id"/>
+                </tree>
+            </field>
+
+        </record>
+
+        <record id="formulas_atributo_form" model="ir.ui.view">
+            <field name="name">formulas_atributo.form</field>
+            <field name="model">formulas.atributo</field>
+            <field name="arch" type="xml">
+                <form string="Atributo">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="tipo" />
+                        </group>
+                        <group>
+                            <field name="descripcion" />
+                            <field name="categoria_id" />
+                        </group>
+                    </group>
+                    <separator string="Valor" attrs="{'invisible':[('tipo', '!=', 'valor')]}" />
+                    <field name="valor" attrs="{'invisible':[('tipo', '!=', 'valor')]}" />
+                    <separator string="Operaciones" attrs="{'invisible':[('tipo', '!=', 'calculado')]}" />
+                    <field name="operacion" attrs="{'invisible':[('tipo', '!=', 'calculado')]}" />
+                    <separator string="Opciones" attrs="{'invisible':[('tipo', '!=', 'opciones')]}" />
+                    <field name="opcion_ids" attrs="{'invisible':[('tipo', '!=', 'opciones')]}">
+                        <tree string="Opciones" editable="bottom">
+                            <field name="name" />
+                            <field name="codigo" />
+                            <field name="valor" />
+                        </tree>
+                    </field>
+                    <separator string="Rangos" attrs="{'invisible':[('tipo', '!=', 'rango')]}" />
+                    <field name="rango_ids" attrs="{'invisible':[('tipo', '!=', 'rango')]}">
+                        <tree string="Rangos" editable="bottom">
+                            <field name="atributo_valor_id" />
+                            <field name="inicial" />
+                            <field name="final" />
+                            <field name="atributo_resultado_id" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_formulas_atributo"
+            name="Atributos"
+            res_model="formulas.atributo"
+            view_mode="tree,form"
+            view_type="form"/>
+
+        <menuitem action="action_formulas_atributo"
+            id="menu_formulas_atributo_form"  parent="mrp.menu_mrp_bom"/>
+
+        <record id="formulas_condicion_tree" model="ir.ui.view">
+            <field name="name">formulas_condicion.tree</field>
+            <field name="model">formulas.condicion</field>
+            <field name="arch" type="xml">
+                <tree string="Condiciones" >
+                    <field name="name" />
+                    <field name="grupo_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="formulas_condicion_form" model="ir.ui.view">
+            <field name="name">formulas_condicion.form</field>
+            <field name="model">formulas.condicion</field>
+            <field name="arch" type="xml">
+                <form string="Condicion">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="tipo" />
+                        </group>
+                        <group>
+                            <field name="grupo_id" />
+                        </group>
+                    </group>
+                    <separator string="Condiciones"/>
+                    <field name="linea_ids">
+                        <tree string="Condiciones" editable="bottom">
+                            <field name="atributo_id" />
+                            <field name="operador" />
+                            <field name="valor" />
+                            <field name="opcion" />
+                        </tree>
+                    </field>
+                    <separator string="Productos"/>
+                    <field name="producto_ids">
+                        <tree string="Productos" editable="bottom">
+                            <field name="producto_id" />
+                            <field name="operacion" />
+                            <field name="instrucciones" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_formulas_condicion"
+            name="Elementos de la formula"
+            res_model="formulas.condicion"
+            view_mode="tree,form" view_type="form"/>
+
+        <menuitem action="action_formulas_condicion"
+            id="menu_formulas_condicion_form"  parent="mrp.menu_mrp_bom"/>
+
+        <record id="formulas_formula_tree" model="ir.ui.view">
+            <field name="name">formulas_formula.tree</field>
+            <field name="model">formulas.formula</field>
+            <field name="arch" type="xml">
+                <tree string="Formulas" >
+                    <field name="name" />
+                    <field name="descripcion" />
+                    <field name="producto_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="formulas_formula_form" model="ir.ui.view">
+            <field name="name">formulas_formula.form</field>
+            <field name="model">formulas.formula</field>
+            <field name="arch" type="xml">
+                <form string="Formula">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="descripcion" />
+                        </group>
+                        <group>
+                            <field name="producto_id" />
+                        </group>
+                    </group>
+                    <separator string="Elementos"/>
+                    <field name="condicion_ids"/>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_formulas_formula"
+            name="Formulas"
+            res_model="formulas.formula"
+            view_mode="tree,form" view_type="form"/>
+
+        <menuitem action="action_formulas_formula"
+            id="menu_formulas_formula_form"  parent="mrp.menu_mrp_bom"/>
+
+        <record id="formulas_componente_tree" model="ir.ui.view">
+            <field name="name">formulas_componente.tree</field>
+            <field name="model">formulas.componente</field>
+            <field name="arch" type="xml">
+                <tree string="Componentes">
+                    <field name="name" />
+                    <field name="descripcion" />
+                    <field name="producto_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="formulas_componente_form" model="ir.ui.view">
+            <field name="name">formulas_componente.form</field>
+            <field name="model">formulas.componente</field>
+            <field name="arch" type="xml">
+                <form string="Componente">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="descripcion" />
+                        </group>
+                        <group>
+                            <field name="producto_id" />
+                            <field name="precio_id" />
+                            <field name="costo_por_precio" />
+                        </group>
+                    </group>
+                    <separator string="Formulas"/>
+                    <field name="formula_ids"/>
+                    <separator string="Requeridos"/>
+                    <field name="requerido_ids"/>
+                    <separator string="Predeterminados"/>
+                    <field name="predeterminado_ids" >
+                        <tree string="Atributos" editable="bottom">
+                            <field name="atributo_id" />
+                            <field name="valor" />
+                            <field name="opcion" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_formulas_componente"
+            name="Lineas de produccion"
+            res_model="formulas.componente"
+            view_mode="tree,form" view_type="form"/>
+
+        <menuitem action="action_formulas_componente"
+            id="menu_componente_formula_form"  parent="mrp.menu_mrp_bom"/>
+
+        <record id="formulas_explosion_tree" model="ir.ui.view">
+            <field name="name">formulas_explosion.tree</field>
+            <field name="model">formulas.explosion</field>
+            <field name="arch" type="xml">
+                <tree string="Explosiones">
+                    <field name="name" />
+                    <field name="componente_id"/>
+                    <field name="cantidad" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="formulas_explosion_form" model="ir.ui.view">
+            <field name="name">formulas_explosion.form</field>
+            <field name="model">formulas.explosion</field>
+            <field name="arch" type="xml">
+                <form string="Explosion">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="componente_id" />
+                        </group>
+                        <group>
+                            <field name="cantidad" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Atributos">
+                            <field name="atributo_ids">
+                                <tree string="Atributos" editable="bottom">
+                                    <field name="atributo_id" />
+                                    <field name="valor" />
+                                    <field name="opcion" />
+                                </tree>
+                            </field>
+                            <group colspan="4" col="6">
+                                <button string="Producir" name="producir" type="object"/>
+                            </group>
+                        </page>
+                        <page string="Productos de Producción">
+                            <field name="produccion_ids">
+                                <tree string="Atributos" editable="bottom">
+                                    <field name="producto_id" />
+                                    <field name="grupo_id" />
+                                    <field name="valor" />
+                                    <field name="instrucciones" />
+                                </tree>
+                            </field>
+                            <group colspan="4" col="6">
+                                <button string="Actualizar precio" name="actualizar_precio" type="object"/>
+                                <!-- <button string="Orden de Producción" name="orden_produccion" type="object"/> -->
+                            </group>
+                        </page>
+                        <page string="Valor de los atributos">
+                            <field name="valor_atributo_ids" >
+                                <tree string="Valor de Atributos" editable="bottom">
+                                    <field name="name" />
+                                    <field name="valor" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_formulas_explosion"
+            name="Explosiones"
+            res_model="formulas.explosion"
+            view_mode="tree,form" view_type="form"/>
+
+        <menuitem action="action_formulas_explosion"
+            id="menu_formulas_explosion_form"  parent="mrp.menu_mrp_bom"/>
+
+    </data>
+</odoo>

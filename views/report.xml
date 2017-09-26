@@ -1,0 +1,6 @@
+<openerp>
+    <data>
+        <report id="fersuc_explosion" string="Produccion" model="fersuc.explosion" report_type="qweb-pdf" file="fersuc.report_produccion" name="fersuc.report_produccion"/>
+        <report id="fersuc_cotizacion" string="Cotizacion" model="sale.order" report_type="qweb-pdf" file="fersuc.report_cotizacion" name="fersuc.report_cotizacion"/>
+    </data>
+</openerp>
