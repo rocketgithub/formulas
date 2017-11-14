@@ -12,6 +12,7 @@ Produccion flexible usando formulas y atributos
     'depends': ['mrp'],
     'data': [
         'views/formulas_view.xml',
+        'security/ir.model.access.csv',
         # 'views/sale_view.xml',
         # 'views/report.xml',
         # 'views/report_produccion.xml',

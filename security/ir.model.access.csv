@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+formulas_categoria,formulas_categoria,model_formulas_categoria,mrp.group_mrp_user,1,1,1,1
+formulas_atributo,formulas_atributo,model_formulas_atributo,mrp.group_mrp_user,1,1,1,1
+formulas_atributo_opcion,formulas_atributo_opcion,model_formulas_atributo_opcion,mrp.group_mrp_user,1,1,1,1
+formulas_atributo_rango,formulas_atributo_rango,model_formulas_atributo_rango,mrp.group_mrp_user,1,1,1,1
+formulas_grupo,formulas_grupo,model_formulas_grupo,mrp.group_mrp_user,1,1,1,1
+formulas_condicion,formulas_condicion,model_formulas_condicion,mrp.group_mrp_user,1,1,1,1
+formulas_condicion_linea,formulas_condicion_linea,model_formulas_condicion_linea,mrp.group_mrp_user,1,1,1,1
+formulas_condicion_producto,formulas_condicion_producto,model_formulas_condicion_producto,mrp.group_mrp_user,1,1,1,1
+formulas_formula,formulas_formula,model_formulas_formula,mrp.group_mrp_user,1,1,1,1
+formulas_componente,formulas_componente,model_formulas_componente,mrp.group_mrp_user,1,1,1,1
+formulas_componente_atributo,formulas_componente_atributo,model_formulas_componente_atributo,mrp.group_mrp_user,1,1,1,1
+formulas_explosion,formulas_explosion,model_formulas_explosion,mrp.group_mrp_user,1,1,1,1
+formulas_explosion_atributo,formulas_explosion_atributo,model_formulas_explosion_atributo,mrp.group_mrp_user,1,1,1,1
+formulas_explosion_produccion,formulas_explosion_produccion,model_formulas_explosion_produccion,mrp.group_mrp_user,1,1,1,1
+formulas_explosion_valor_atributo,formulas_explosion_valor_atributo,model_formulas_explosion_valor_atributo,mrp.group_mrp_user,1,1,1,1
