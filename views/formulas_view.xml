@@ -183,8 +183,10 @@
                         </group>
                         <group>
                             <field name="producto_id" />
-                            <field name="precio_id" />
-                            <field name="costo_por_precio" />
+                            <field name="precio_basado_en_costo" />
+                            <field name="precio_id" attrs="{'invisible':[('precio_basado_en_costo', '=', True)]}" />
+                            <field name="costo_id" attrs="{'invisible':[('precio_basado_en_costo', '=', False)]}" />
+                            <field name="margen_id" attrs="{'invisible':[('precio_basado_en_costo', '=', False)]}" />
                         </group>
                     </group>
                     <separator string="Formulas"/>
